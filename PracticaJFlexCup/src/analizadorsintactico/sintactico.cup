@@ -1,0 +1,175 @@
+package analizadorsintactico;
+import java_cup.runtime.*;
+
+parser code {:
+    public String errsin="";
+    public void syntax_error(Symbol x) {
+        errsin += String.format(
+            "\nError de sintaxis en posición %d,%d: cerca de %s",
+            (x.left + 1), (x.right + 1), x.value
+        );
+        throw new UnsupportedOperationException(errsin);
+    }
+:};
+
+terminal
+programa,
+fin_programa,
+tipo,
+leer,
+escribir,
+si,
+entonces,
+sino,
+finSi,
+hacer,
+mientras,
+finMientras,
+para,
+hasta,
+paso,
+finPara,
+segun,
+deOtroModo,
+finSegun,
+parentesisIzquierdo,
+parentesisDerecho,
+operadorAritmetico,
+operadorLogico,
+operadorRelacional,
+puntoComa,
+asignacion,
+dosPuntos,
+coma,
+numero,
+identificador,
+nombre,
+finNombre,
+constanteAlfanumerica;
+
+
+//non terminal E,T,EL,EA,I,IS;
+//
+//
+//I::=mientras pi EL pd hacer IS finmientras;
+//IS::=I;
+//IS::=I IS;
+//I::=id asig EL pc;
+//EL ::= EL ol EA;
+//EL ::= EA;
+//EA ::= E or E;
+//EA ::= E;
+//E ::= E op T;
+//E ::= T;
+//T ::= num | id;
+//T ::= pi EL pd;
+
+// Asignación
+non terminal E,
+CUERPO,
+DEFINICION,
+VARIABLES_COMA,
+ASIGNACION,
+LECTURA,
+ESCRITURA,
+LISTA_ESCRITURA,
+ELEMENTO_ESCRITURA,
+DESICION,
+CUERPO_DESICION,
+CICLO_MIENTRAS,
+CICLO_PARA,
+POSIBLE_PASO,
+SELECCION_MULTIPLE,
+OPCIONES,
+CONTENIDO,
+CONTENIDO_L,
+CONTENIDO_A,
+NOMBRES,
+T;
+
+E ::= programa identificador NOMBRES fin_programa;
+E ::= programa NOMBRES fin_programa;
+
+NOMBRES ::= NOMBRES nombre constanteAlfanumerica CUERPO finNombre;
+NOMBRES ::= nombre constanteAlfanumerica CUERPO finNombre;
+
+CUERPO ::= CUERPO DEFINICION
+         | CUERPO ASIGNACION
+         | CUERPO LECTURA
+         | CUERPO ESCRITURA
+         | CUERPO DESICION
+         | CUERPO CICLO_MIENTRAS
+         | CUERPO CICLO_PARA
+         | CUERPO SELECCION_MULTIPLE;
+
+CUERPO ::= DEFINICION
+         |  ASIGNACION
+         |  LECTURA
+         |  ESCRITURA
+         |  DESICION
+         |  CICLO_MIENTRAS
+         |  CICLO_PARA
+         |  SELECCION_MULTIPLE;
+
+
+DEFINICION ::= tipo VARIABLES_COMA puntoComa;
+LECTURA ::= leer VARIABLES_COMA puntoComa;
+
+VARIABLES_COMA ::= VARIABLES_COMA coma identificador;
+VARIABLES_COMA ::= identificador;
+
+ESCRITURA ::= escribir LISTA_ESCRITURA puntoComa;
+LISTA_ESCRITURA ::= LISTA_ESCRITURA coma ELEMENTO_ESCRITURA;
+LISTA_ESCRITURA ::= ELEMENTO_ESCRITURA;
+ELEMENTO_ESCRITURA ::= constanteAlfanumerica;
+ELEMENTO_ESCRITURA ::= identificador;
+
+DESICION ::=
+si parentesisIzquierdo CONTENIDO parentesisDerecho
+    entonces
+    CUERPO_DESICION
+finSi;
+CUERPO_DESICION ::= CUERPO sino CUERPO;
+CUERPO_DESICION ::= CUERPO;
+
+CICLO_MIENTRAS ::=
+mientras parentesisIzquierdo CONTENIDO parentesisDerecho hacer
+    CUERPO //Nota: Podría ser que esto esté vacio, no se, toca ver
+finMientras;
+
+CICLO_PARA ::=
+para identificador asignacion CONTENIDO hasta CONTENIDO
+    POSIBLE_PASO
+finPara;
+POSIBLE_PASO ::= paso numero CUERPO;
+POSIBLE_PASO ::= CUERPO;
+
+SELECCION_MULTIPLE ::=
+segun identificador hacer
+    OPCIONES
+finSegun;
+
+OPCIONES ::=
+numero dosPuntos
+    CUERPO
+OPCIONES;
+
+OPCIONES ::=
+numero dosPuntos
+    CUERPO;
+
+OPCIONES ::=
+deOtroModo dosPuntos
+    CUERPO;
+
+ASIGNACION ::= identificador asignacion CONTENIDO puntoComa;
+ASIGNACION ::= identificador asignacion constanteAlfanumerica puntoComa;
+CONTENIDO ::= CONTENIDO operadorLogico CONTENIDO_L;
+CONTENIDO ::= CONTENIDO_L;
+CONTENIDO_L ::= CONTENIDO_L operadorRelacional CONTENIDO_A;
+CONTENIDO_L ::= CONTENIDO_A;
+CONTENIDO_A ::= CONTENIDO_A operadorAritmetico T;
+CONTENIDO_A ::= T;
+T ::= identificador;
+T ::= numero;
+T ::= parentesisIzquierdo CONTENIDO parentesisDerecho;

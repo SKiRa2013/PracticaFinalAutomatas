@@ -1,0 +1,29 @@
+Program one
+    Eliana "one"
+        a=b;
+        While (a>b) Do
+            a=b;
+        EndWhile
+    EndEliana
+
+    David "two"
+        a=b;
+        While (a>b) Do
+            a=b;
+        EndWhile
+    EndDavid
+
+    Luis "three"
+        a=b;
+        While (a>b) Do
+            a=b;
+        EndWhile
+    
+
+    Gabriel "four"
+        a=b;
+        While (a>b) Do
+            a=b;
+        EndWhile
+    EndGabriel
+EndProgram
