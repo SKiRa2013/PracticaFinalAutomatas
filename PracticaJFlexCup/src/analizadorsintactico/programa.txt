@@ -1,44 +1,43 @@
 Programa uno
 
-Entero a,b,c,i;
-Real   x,y,x;
+    Entero a, b, c, i;
+    Real x, y, x;
 
-Leer a,b,c;
+    Leer a, b, c;
 
-i=0;
-a=0;
+    i = 0;
+    a = 0;
 
-Mientras (i<10) hacer
-	Si (a<b) Entonces
-		a=a+i;
-	sino 
-		Si (x<y & a>b) Entonces
-			a=b+c;
-		Finsi
-b=b+i;
-	Fin si
-	i=i+1;
-finMientras
+    Mientras (i < 10) hacer
+        Si (a < b) Entonces
+            a = a + i;
+        Sino
+            Si (x < y & a > b) Entonces
+                a = b + c;
+            FinSi
+        FinSi
+        b = b + i;
+        i = i + 1;
+    FinMientras
 
-para i=0 hasta a paso 2
-       c=c+i;
-       para a=1 hasta b 
-	escribir a;
-       fin para
-fin para
+    Para i = 0 hasta a paso 2
+        c = c + i;
+        Para a = 1 hasta b
+            Escribir a;
+        FinPara
+    FinPara
 
-Leer i;
+    Leer i;
 
-Segun i Hacer
-	1:
-		i=i+a;
-	2:
-		i=i+b;
-	
-	De Otro Modo:
-		Escribir “Valor “,i,”  no valido “;
-Fin Segun
+    Según i Hacer
+        1:
+            i = i + a;
+        2:
+            i = i + b;
+        De Otro Modo:
+            Escribir “Valor ”, i, “ no válido”;
+    FinSegún
 
-escribir “a =”,a, “ b = “, b;
+    Escribir “a = ”, a, “ b = ”, b;
 
 FinPrograma

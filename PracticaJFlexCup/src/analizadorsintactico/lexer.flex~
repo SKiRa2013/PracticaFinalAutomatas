@@ -42,8 +42,8 @@ parentesis_derecho  = ")"
 programa     = "Program" 
 fin_programa = "EndProgram" | "End Program"
 
-nombre = "Suma" | "Resta" | "Mult" | "Div"
-fin_nombre = "EndSuma" | "EndResta" | "EndMult" | "EndDiv"
+nombre = "Eliana" | "David" | "Gabriel" | "Luis"
+fin_nombre = "EndEliana" | "EndDavid" | "EndGabriel" | "EndLuis"
 
 tipo     = "Int" | "Real"  | "String"
 leer     = "Read"

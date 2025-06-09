@@ -1,0 +1,18 @@
+Program one
+    Suma "one"
+        S=a+b
+    EndSuma
+
+    Resta "two" 
+        R=a-b
+    EndSuma
+    EndResta
+
+    Div "three"
+        D=a/b
+    EndDiv
+
+    Mult "four"
+        M=a*b
+    EndMult
+EndProgram

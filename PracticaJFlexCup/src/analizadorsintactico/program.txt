@@ -1,29 +1,26 @@
 Program one
-    Eliana "one"
-        a=b;
-        While (a>b) Do
-            a=b;
-        EndWhile
-    EndEliana
+    Suma a, b
+        S=a+b
+        escribir "suma = ", S
+    EndSuma
 
-    David "two"
-        a=b;
-        While (a>b) Do
-            a=b;
-        EndWhile
-    EndDavid
+    Resta a, b 
+        R=a-b
+        escribir "resta = ", R
+    EndSuma
+    EndResta
 
-    Luis "three"
-        a=b;
-        While (a>b) Do
-            a=b;
-        EndWhile
-    
+    Div "a", "b"
+        D=a/b
+        Si(b=0) Entonces
+		escribir "No se puede dividir entre cero"
+	Sino
+        	escribir "division = ", D
+	EndSi
+    EndDiv
 
-    Gabriel "four"
-        a=b;
-        While (a>b) Do
-            a=b;
-        EndWhile
-    EndGabriel
+    Mult "a", "b"
+        M=a*b
+        escribir "multip = ", M
+    EndMult
 EndProgram

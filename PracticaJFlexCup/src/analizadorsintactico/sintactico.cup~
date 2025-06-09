@@ -90,8 +90,8 @@ T;
 E ::= programa identificador NOMBRES fin_programa;
 E ::= programa NOMBRES fin_programa;
 
-NOMBRES ::= NOMBRES nombre VARIABLES_COMA CUERPO finNombre;
-NOMBRES ::= nombre VARIABLES_COMA CUERPO finNombre;
+NOMBRES ::= NOMBRES nombre constanteAlfanumerica CUERPO finNombre;
+NOMBRES ::= nombre constanteAlfanumerica CUERPO finNombre;
 
 CUERPO ::= CUERPO DEFINICION
          | CUERPO ASIGNACION
