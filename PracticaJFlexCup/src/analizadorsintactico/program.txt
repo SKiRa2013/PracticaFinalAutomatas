@@ -1,0 +1,26 @@
+Program one
+    Suma a, b
+        S=a+b
+        escribir "suma = ", S
+    EndSuma
+
+    Resta a, b 
+        R=a-b
+        escribir "resta = ", R
+    EndSuma
+    EndResta
+
+    Div "a", "b"
+        D=a/b
+        Si(b=0) Entonces
+		escribir "No se puede dividir entre cero"
+	Sino
+        	escribir "division = ", D
+	EndSi
+    EndDiv
+
+    Mult "a", "b"
+        M=a*b
+        escribir "multip = ", M
+    EndMult
+EndProgram
